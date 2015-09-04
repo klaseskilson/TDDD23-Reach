@@ -1,0 +1,20 @@
+{
+  "name": "Reach",
+  "version": "0.0.0",
+  "authors": [
+    "Klas Eskilson <klas.eskilson@gmail.com>"
+  ],
+  "main": "main.js",
+  "license": "MIT",
+  "dependencies": {
+    "normalize-css": "normalize.css#~3.0.3",
+    "phaser": "~2.4.3"
+  },
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
