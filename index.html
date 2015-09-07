@@ -10,11 +10,16 @@
   <script src="assets/components/phaser/build/phaser.min.js"></script>
 </head>
 <body>
-  <!-- load game -->
+  <!-- load game states -->
+  <script src="game/states/boot.js"></script>
+  <script src="game/states/preload.js"></script>
+  <script src="game/states/intro.js"></script>
+  <script src="game/states/render.js"></script>
+
+  <!-- levels -->
+  <script src="game/levels/level1.js"></script>
+
+  <!-- start the game -->
   <script src="game/main.js"></script>
-  <script src="game/preload.js"></script>
-  <script src="game/update.js"></script>
-  <script src="game/create.js"></script>
-  <script src="game/render.js"></script>
 </body>
 </html>
