@@ -3,5 +3,11 @@
 var game, player;
 
 window.onload = function() {
-  game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update });
+  var methods = {
+    preload: preload,
+    create: create,
+    update: update,
+    render: render
+  };
+  game = new Phaser.Game(window.innerWidth, window.innerHeight, Phaser.AUTO, '', methods);
 };
