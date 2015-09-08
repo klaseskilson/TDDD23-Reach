@@ -23,5 +23,10 @@ IntroState.prototype = {
 
   update: function () {
     this.player.animations.stop();
+  },
+
+  render: function () {
+    var self = this;
+    self.game.debug.text(self.game.time.fps || '--', 2, 14, "#00ff00");
   }
 };
