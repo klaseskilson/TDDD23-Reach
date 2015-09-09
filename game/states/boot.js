@@ -4,12 +4,21 @@ function BootState() {};
 
 BootState.prototype = {
   preload: function() {
-    // load preloader assets
+    // custom game config
+    this.reachConfig = {
+      worldGravity: 300,
+      mapWidth: 300,
+      debug: true
+    };
   },
-  create: function() {
-    // setup game environment
-    // scale, input etc..
 
-    this.game.state.start('preload');
+  create: function() {
+    var self = this;
+
+    if (self.reachConfig.debug) {
+      self.game.add.plugin(Phaser.Plugin.Debug);
+    }
+
+    self.game.state.start('preload');
   }
 };
