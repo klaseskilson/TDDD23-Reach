@@ -43,11 +43,11 @@ IntroState.prototype = {
     self.game.physics.arcade.collide(self.player, self.platforms);
 
     if (self.cursors.left.isDown) {
-      // Move to the left
+      // move to the left
       self.player.body.velocity.x = -150;
       self.player.animations.play('left');
     } else if (self.cursors.right.isDown) {
-      // Move to the right
+      // move to the right
       self.player.body.velocity.x = 150;
       self.player.animations.play('right');
     } else {
