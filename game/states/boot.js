@@ -10,6 +10,8 @@ BootState.prototype = {
       mapWidth: 300,
       debug: true
     };
+
+    this.scale.scaleMode = Phaser.ScaleManager.RESIZE;
   },
 
   create: function() {

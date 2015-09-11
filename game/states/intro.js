@@ -56,8 +56,7 @@ IntroState.prototype = {
       self.player.frame = 4;
     }
 
-    if (self.cursors.up.isDown && self.player.body.touching.down)
-    {
+    if (self.cursors.up.isDown && self.player.body.touching.down) {
       self.player.body.velocity.y = -350;
     }
   }
