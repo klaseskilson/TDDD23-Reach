@@ -4,14 +4,17 @@
   <meta charset="UTF-8">
   <title>Reach</title>
 
-  <link rel="stylesheet" href="assets/components/normalize-css/normalize.css"/>
-  <link rel="stylesheet" href="assets/stylesheets/style.css"/>
+  <link rel="stylesheet" href="assets/components/normalize-css/normalize.css">
+  <link rel="stylesheet" href="assets/stylesheets/style.css">
 
   <!-- lib -->
-  <script src="assets/components/phaser/build/phaser.min.js"></script>
+  <script src="assets/components/phaser/build/phaser.js"></script>
   <script src="assets/components/phaser-debug/dist/phaser-debug.js"></script>
 </head>
 <body>
+  <!-- our own utilities -->
+  <script src="game/config.js"></script>
+  <script src="game/utilities.js"></script>
   <!-- load game states -->
   <script src="game/states/boot.js"></script>
   <script src="game/states/preload.js"></script>

@@ -5,16 +5,13 @@ function PreloadState() {}
 PreloadState.prototype = {
   preload: function () {
     var self = this;
+    self.game.load.tilemap('map1', 'assets/tilemaps/map1.json', null, Phaser.Tilemap.TILED_JSON);
+    self.game.load.image('gameSprites', 'assets/images/simples_pimples.png');
+    self.game.load.image('player', 'assets/images/player.png');
     self.game.load.spritesheet('dude', 'assets/images/dude.png', 32, 48);
-    self.game.time.advancedTiming = true;
   },
 
   create: function () {
-    var self = this;
-
-    // use arcade physics lib
-    self.game.physics.startSystem(Phaser.Physics.ARCADE);
-
-    self.game.state.start('intro');
+    this.game.state.start('intro');
   }
 };

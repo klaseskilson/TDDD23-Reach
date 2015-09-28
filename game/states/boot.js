@@ -3,23 +3,20 @@
 function BootState() {};
 
 BootState.prototype = {
-  preload: function() {
-    // custom game config
-    this.reachConfig = {
-      worldGravity: 300,
-      mapWidth: 300,
-      debug: true
-    };
-
-    this.scale.scaleMode = Phaser.ScaleManager.RESIZE;
-  },
-
   create: function() {
     var self = this;
+    self.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
 
-    if (self.reachConfig.debug) {
+    //have the game centered horizontally
+    self.scale.pageAlignHorizontally = true;
+    self.scale.pageAlignVertically = true;
+
+    if (ReachConfig.debug) {
       self.game.add.plugin(Phaser.Plugin.Debug);
     }
+
+    // use arcade physics lib
+    self.game.physics.startSystem(Phaser.Physics.ARCADE);
 
     self.game.state.start('preload');
   }

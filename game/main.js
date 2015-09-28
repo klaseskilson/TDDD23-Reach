@@ -1,10 +1,11 @@
 'use strict';
 
-function Reach() {};
+function Reach() {}
 
 Reach.prototype = {
   start: function () {
-    var game = new Phaser.Game(window.innerWidth, window.innerHeight, Phaser.AUTO, '');
+    var gameHeight = Math.round(ReachConfig.gameWidth * (window.innerHeight / window.innerWidth));
+    var game = new Phaser.Game(ReachConfig.gameWidth, gameHeight, Phaser.AUTO, '');
 
     game.state.add('boot', BootState);
     game.state.add('preload', PreloadState);
