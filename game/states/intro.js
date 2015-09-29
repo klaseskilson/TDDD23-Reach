@@ -21,8 +21,7 @@ IntroState.prototype = _.assign({
 
     // setup player
     var playerSearch = ReachUtilities.findObjectsByType('playerStart', self.map, 'objectLayer');
-    console.log('player pos', playerSearch[0]);
-    self.player = self.game.add.sprite(playerSearch[0].x, playerSearch[0].x, 'player');
+    self.player = self.game.add.sprite(playerSearch[0].x, playerSearch[0].y, 'player');
 
     // enable physics for the player
     self.game.physics.arcade.enable(self.player);
