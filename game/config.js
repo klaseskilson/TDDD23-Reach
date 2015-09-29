@@ -7,5 +7,6 @@ var ReachConfig = {
   player: {
     velocity: 75,
     jump: 250
-  }
+  },
+  defaultLevelDuration: 180 * 1000 // 3 mins in ms
 };

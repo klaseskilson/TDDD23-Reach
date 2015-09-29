@@ -1,3 +1,5 @@
+'use strict';
+
 function Level1State () {};
 
 Level1State.prototype = {
