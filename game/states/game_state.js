@@ -5,9 +5,11 @@ var ReachGameState = {
   createLevelTime: function (levelLightDuration) {
     var self = this;
 
-    // setup time
-    self.levelStartTime = (new Date()).getTime();
-    self.leveLightDuration = levelLightDuration || ReachConfig.defaultLevelDuration;
+    // setup timer
+    self.levelLightDuration = levelLightDuration || ReachConfig.defaultLevelDuration;
+    self.levelTimer = self.game.time.create();
+    self.levelTimer.add(self.levelLightDuration, self.gameOver, self);
+    self.levelTimer.start();
 
     // setup global overlay
     self.shadowTexture = self.game.add.bitmapData(self.map.widthInPixels, self.map.heightInPixels);
@@ -45,17 +47,13 @@ var ReachGameState = {
 
   updateLevelLight: function () {
     var self = this;
-    if (self.levelStartTime && self.leveLightDuration && self.shadowTexture) {
-      var elapsed = (new Date()).getTime() - self.levelStartTime;
-      var progress = (self.leveLightDuration - elapsed) / self.leveLightDuration;
-      var cProg = parseInt(255 * progress);
+    if (self.levelTimer && self.levelTimer.running && self.shadowTexture) {
+      //console.log(self.levelTimer.duration)
+      var progress = self.levelTimer.duration / self.levelLightDuration;
+      progress = parseInt(255 * progress);
 
-      if (cProg < 0) {
-        self.gameOver();
-      }
-
-      //console.log('Time progress:', progress, 'color progress:', cProg);
-      self.shadowTexture.context.fillStyle = "rgb(" + cProg + "," + cProg + "," + cProg + ")";
+      //console.log('Time progress:', progress);
+      self.shadowTexture.context.fillStyle = "rgb(" + progress + "," + progress + "," + progress + ")";
       self.shadowTexture.context.fillRect(0, 0, self.shadowTexture.width, self.shadowTexture.height);
       self.shadowTexture.dirty = true;
     }
