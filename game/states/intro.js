@@ -19,26 +19,12 @@ IntroState.prototype = _.assign({
 
     self.backgroundLayer.resizeWorld();
 
-    // setup player
-    var playerSearch = ReachUtilities.findObjectsByType('playerStart', self.map, 'objectLayer');
-    self.player = self.game.add.sprite(playerSearch[0].x, playerSearch[0].y, 'player');
-
-    // enable physics for the player
-    self.game.physics.arcade.enable(self.player);
-    // append physics characteristics to player
-    self.player.body.bounce.y = 0.2;
-    self.player.body.gravity.y = 600;
-    self.player.body.collideWorldBounds = true;
-
-    // add self.player animations
-    //self.player.animations.add('left', [0, 1, 2, 3], 10, true);
-    //self.player.animations.add('right', [5, 6, 7, 8], 10, true);
-
-    // follow player with camera
-    self.game.camera.follow(self.player);
-
     // subscribe to cursor keys
     self.cursors = self.game.input.keyboard.createCursorKeys();
+
+    // setup player
+    var playerSearch = ReachUtilities.findObjectsByType('playerStart', self.map, 'objectLayer');
+    self.createPlayer(playerSearch[0]);
 
     // prepare light
     self.createLevelTime();
@@ -48,4 +34,4 @@ IntroState.prototype = _.assign({
     this.updatePlayer();
     this.updateLevelLight();
   }
-}, ReachGameState);
+}, ReachStateCreate, ReachStateUpdate);

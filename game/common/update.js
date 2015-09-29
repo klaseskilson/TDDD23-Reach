@@ -1,24 +1,7 @@
 'use strict';
 
 // Store common game state methods here, and extend it into the state's prototype
-var ReachGameState = {
-  createLevelTime: function (levelLightDuration) {
-    var self = this;
-
-    // setup timer
-    self.levelLightDuration = levelLightDuration || ReachConfig.defaultLevelDuration;
-    self.levelTimer = self.game.time.create();
-    self.levelTimer.add(self.levelLightDuration, self.gameOver, self);
-    self.levelTimer.start();
-
-    // setup global overlay
-    self.shadowTexture = self.game.add.bitmapData(self.map.widthInPixels, self.map.heightInPixels);
-    // add overlay to game
-    self.shadowTextureSprite = self.game.add.image(0, 0, self.shadowTexture);
-    // blend mode multiply will darken everything below this texture
-    self.shadowTextureSprite.blendMode = Phaser.blendModes.MULTIPLY;
-  },
-
+var ReachStateUpdate = {
   updatePlayer: function () {
     var self = this;
 
