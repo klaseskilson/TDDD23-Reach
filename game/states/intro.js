@@ -26,12 +26,16 @@ IntroState.prototype = _.assign({
     var playerSearch = ReachUtilities.findObjectsByType('playerStart', self.map, 'objectLayer');
     self.createPlayer(playerSearch[0]);
 
+    var doorSearch = ReachUtilities.findObjectsByType('door', self.map, 'objectLayer');
+    self.createLevelExit(doorSearch[0]);
+
     // prepare light
-    self.createLevelTime();
+    self.createDarkness(60*1000);
   },
 
   update: function () {
     this.updatePlayer();
+    this.updatePlayerProgress();
     this.updateLevelLight();
   }
 }, ReachStateCreate, ReachStateUpdate);

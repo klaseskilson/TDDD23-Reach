@@ -51,5 +51,16 @@ var ReachStateUpdate = {
     console.log('Game over called from state', self.state.current);
     window.alert("Game over!");
     self.game.state.start(self.state.current);
+  },
+
+  updatePlayerProgress: function () {
+    var self = this;
+    self.game.physics.arcade.overlap(self.player, self.doors, self.mapFinished, null, self);
+  },
+
+  mapFinished: function (player, door) {
+    var self = this;
+    alert('Map finished!');
+    console.log('Map finished! Called from state', self.state.current);
   }
 };

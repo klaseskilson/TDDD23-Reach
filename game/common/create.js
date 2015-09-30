@@ -20,14 +20,19 @@ var ReachStateCreate = {
     self.game.camera.follow(self.player);
   },
 
-  createLevelTime: function (levelLightDuration) {
+  createDarkness: function (levelLightDuration, lanternLightDuration) {
     var self = this;
 
-    // setup timer
+    // setup global timer
     self.levelLightDuration = levelLightDuration || ReachConfig.defaultLevelDuration;
     self.levelTimer = self.game.time.create();
     self.levelTimer.add(self.levelLightDuration, self.gameOver, self);
     self.levelTimer.start();
+
+    // setup user lantern
+    self.lanternLightDuration = lanternLightDuration || ReachConfig.lanternLightDuration;
+    self.lanternTimer = self.game.time.create();
+    self.lanternTimer.add(self.lanternLightDuration);
 
     // setup global overlay
     self.shadowTexture = self.game.add.bitmapData(self.map.widthInPixels, self.map.heightInPixels);
@@ -35,5 +40,19 @@ var ReachStateCreate = {
     self.shadowTextureSprite = self.game.add.image(0, 0, self.shadowTexture);
     // blend mode multiply will darken everything below this texture
     self.shadowTextureSprite.blendMode = Phaser.blendModes.MULTIPLY;
+  },
+
+  /**
+   * setup where the current level is finished
+   *
+   * @param goalObject object containing x & y where
+   */
+  createLevelExit: function (goalObject) {
+    var self = this;
+
+    self.doors = self.game.add.group();
+    self.doors.enableBody = true;
+
+    ReachUtilities.createFromTiledObject(goalObject, self.doors);
   }
 };

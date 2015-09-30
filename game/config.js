@@ -8,5 +8,6 @@ var ReachConfig = {
     velocity: 75,
     jump: 250
   },
-  defaultLevelDuration: 180 * 1000 // 3 mins in ms
+  defaultLevelDuration: 180 * 1000, // 3 mins in ms
+  playerLightRadius: 40
 };
