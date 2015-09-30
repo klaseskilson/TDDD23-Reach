@@ -9,5 +9,6 @@ var ReachConfig = {
     jump: 250
   },
   defaultLevelDuration: 180 * 1000, // 3 mins in ms
-  playerLightRadius: 40
+  lanternLightDuration: 30 * 1000, // 30 sec
+  lanternRadius: 40
 };

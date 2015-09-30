@@ -21,6 +21,8 @@ IntroState.prototype = _.assign({
 
     // subscribe to cursor keys
     self.cursors = self.game.input.keyboard.createCursorKeys();
+    self.spacebar = self.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+    self.spacebar.onDown.add(self.togglePlayerLight, self);
 
     // setup player
     var playerSearch = ReachUtilities.findObjectsByType('playerStart', self.map, 'objectLayer');
@@ -30,7 +32,7 @@ IntroState.prototype = _.assign({
     self.createLevelExit(doorSearch[0]);
 
     // prepare light
-    self.createDarkness(60*1000);
+    self.createDarkness(10*1000);
   },
 
   update: function () {

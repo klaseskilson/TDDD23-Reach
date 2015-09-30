@@ -32,7 +32,9 @@ var ReachStateCreate = {
     // setup user lantern
     self.lanternLightDuration = lanternLightDuration || ReachConfig.lanternLightDuration;
     self.lanternTimer = self.game.time.create();
-    self.lanternTimer.add(self.lanternLightDuration);
+    self.lanternTimer.add(self.lanternLightDuration, self.gameOver, self);
+    self.lanternTimer.start();
+    self.lanternTimer.pause();
 
     // setup global overlay
     self.shadowTexture = self.game.add.bitmapData(self.map.widthInPixels, self.map.heightInPixels);
