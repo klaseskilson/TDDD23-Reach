@@ -1,6 +1,25 @@
 'use strict';
 
 var ReachStateCreate = {
+  /**
+   * initiate keyboard subscriptions
+   * @param keys object containing the pre-defined keys you want to activate:
+   * `cursors` - player movement
+   * `spacebar` - light control
+   */
+  setupInput: function (keys) {
+    var self = this;
+    if (keys.cursors) {
+      // subscribe to cursor keys
+      self.cursors = self.game.input.keyboard.createCursorKeys();
+    }
+
+    if (keys.spacebar) {
+      self.spacebar = self.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+      self.spacebar.onDown.add(self.togglePlayerLight, self);
+    }
+  },
+
   createPlayer: function (playerOptions) {
     var self = this;
     self.player = self.game.add.sprite(playerOptions.x, playerOptions.y, 'player');

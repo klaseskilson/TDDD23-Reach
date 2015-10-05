@@ -42,6 +42,7 @@ var ReachStateUpdate = {
 
       // detect if player light is activated
       if (self.lanternTimer && !self.lanternTimer.paused && self.lanternTimer.duration > 0) {
+        // calculate the life of the lantern, the closer towards 0 the less life is there left
         var lanternProgress = 1 - self.lanternTimer.duration / self.lanternLightDuration;
         // calculate flickering (increasing as lantern drains)
         var maximumFlicker = 15;
@@ -53,7 +54,7 @@ var ReachStateUpdate = {
           y: self.player.body.y
         };
         var gradient = self.shadowTexture.context.createRadialGradient(
-          playerPos.x, playerPos.y, ReachConfig.lanternRadius * .75,
+          playerPos.x, playerPos.y, ReachConfig.lanternRadius * .25,
           playerPos.x, playerPos.y, radius
         );
         gradient.addColorStop(0, 'rgba(255, 255, 255, ' + (1.0 - colorFlicker) + ')');
