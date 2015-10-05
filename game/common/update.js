@@ -91,9 +91,9 @@ var ReachStateUpdate = {
 
   mapFinished: function (player, door) {
     var self = this;
-    alert('Map finished!');
-    // TODO: handle different doors differently
-    console.log('Map finished! Called from state', self.state.current);
+    //alert('Map finished!');
+    // TODO: handle each doors differently
+    console.log('Map finished! Called from state', self.state.current, player, door);
   },
 
   togglePlayerLight: function () {

@@ -2,7 +2,7 @@
 
 function IntroState() {}
 
-IntroState.prototype = _.extend({
+IntroState.prototype = _.defaults({
   create: function () {
     var self = this;
 
