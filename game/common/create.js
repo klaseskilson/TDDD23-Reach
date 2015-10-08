@@ -15,9 +15,20 @@ var ReachStateCreate = {
     }
 
     if (keys.spacebar) {
-      self.spacebar = self.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
-      self.spacebar.onDown.add(self.togglePlayerLight, self);
+      self.setupLanter();
     }
+  },
+
+  setupLanter: function () {
+    var self = this;
+    self.spacebar = self.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+    self.spacebar.onDown.add(self.togglePlayerLight, self);
+
+    // setup user lantern
+    self.lanternTimer = self.game.time.create();
+    self.lanternTimer.add(self.lanternLightDuration, self.gameOver, self);
+    self.lanternTimer.start();
+    self.lanternTimer.pause();
   },
 
   createPlayer: function (playerOptions) {
@@ -47,13 +58,6 @@ var ReachStateCreate = {
     self.levelTimer = self.game.time.create();
     self.levelTimer.add(self.levelLightDuration, self.gameOver, self);
     self.levelTimer.start();
-
-    // setup user lantern
-    self.lanternLightDuration = lanternLightDuration || ReachConfig.lanternLightDuration;
-    self.lanternTimer = self.game.time.create();
-    self.lanternTimer.add(self.lanternLightDuration, self.gameOver, self);
-    self.lanternTimer.start();
-    self.lanternTimer.pause();
 
     // setup global overlay
     self.shadowTexture = self.game.add.bitmapData(self.map.widthInPixels, self.map.heightInPixels);

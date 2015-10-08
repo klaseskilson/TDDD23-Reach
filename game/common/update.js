@@ -77,8 +77,9 @@ var ReachStateUpdate = {
   gameOver: function () {
     var self = this;
 
-    if (self. levelTimer && !(self.levelTimer.duration > 0)
-        && self.lanternTimer && !(!self.lanternTimer.paused && self.lanternTimer.duration > 0)) {
+    var mapTimeOut = self.levelTimer && !(self.levelTimer.duration > 0);
+    var lanternTimeOut = self.lanternTimer && !(!self.lanternTimer.paused && self.lanternTimer.duration > 0);
+    if (mapTimeOut && lanternTimeOut) {
       window.alert("Game over!");
       console.log('Game over called from state', self.state.current);
       self.game.state.start(self.state.current);
@@ -99,17 +100,17 @@ var ReachStateUpdate = {
 
   togglePlayerLight: function () {
     var self = this;
-    if (self.lanternTimer) {
-      if (self.lanternTimer.paused === false) {
-        console.log('pausing player light');
-        self.lanternTimer.pause();
-        // the game might be over if the player chooses to turn of the light,
-        // therefore we call self.gameOver to test this
-        self.gameOver();
-      } else {
-        console.log('resuming player light');
-        self.lanternTimer.resume();
-      }
+    if (typeof self.lanternTimer === "undefined") return;
+
+    if (self.lanternTimer.paused === false) {
+      console.log('pausing player light');
+      self.lanternTimer.pause();
+      // the game might be over if the player chooses to turn of the light,
+      // therefore we call self.gameOver to test this
+      self.gameOver();
+    } else {
+      console.log('resuming player light');
+      self.lanternTimer.resume();
     }
   }
 };

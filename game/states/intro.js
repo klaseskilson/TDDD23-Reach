@@ -19,6 +19,8 @@ IntroState.prototype = _.defaults({
 
     self.backgroundLayer.resizeWorld();
 
+    // config lantern light duration
+    self.lanternLightDuration = ReachConfig.lanternLightDuration;
     self.setupInput({cursors: true, spacebar: true});
 
     // setup player
