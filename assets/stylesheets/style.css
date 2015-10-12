@@ -1,3 +1,7 @@
+body {
+  background: #000;
+}
+
 .pdebug {
   top: 0;
   bottom: auto !important;
