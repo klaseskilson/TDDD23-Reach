@@ -15,11 +15,11 @@ var ReachStateCreate = {
     }
 
     if (keys.spacebar) {
-      self.setupLanter();
+      self.setupLantern();
     }
   },
 
-  setupLanter: function () {
+  setupLantern: function () {
     var self = this;
     self.spacebar = self.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
     self.spacebar.onDown.add(self.togglePlayerLight, self);
@@ -33,7 +33,7 @@ var ReachStateCreate = {
 
   createPlayer: function (playerOptions) {
     var self = this;
-    self.player = self.game.add.sprite(playerOptions.x, playerOptions.y, 'player');
+    self.player = self.game.add.sprite(playerOptions.x, playerOptions.y, 'boy');
 
     // enable physics for the player
     self.game.physics.arcade.enable(self.player);
@@ -43,14 +43,14 @@ var ReachStateCreate = {
     self.player.body.collideWorldBounds = true;
 
     // add self.player animations
-    //self.player.animations.add('left', [0, 1, 2, 3], 10, true);
-    //self.player.animations.add('right', [5, 6, 7, 8], 10, true);
+    self.player.animations.add('left', [0, 1, 2, 3], 10, true);
+    self.player.animations.add('right', [5, 6, 7, 8], 10, true);
 
     // follow player with camera
     self.game.camera.follow(self.player);
   },
 
-  createDarkness: function (levelLightDuration, lanternLightDuration) {
+  createDarkness: function (levelLightDuration) {
     var self = this;
 
     // setup global timer

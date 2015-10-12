@@ -1,12 +1,12 @@
 'use strict';
 
 var ReachConfig = {
-  gameWidth: 160,
+  gameWidth: 200,
   worldGravity: 300,
   debug: true,
   player: {
     velocity: 75,
-    jump: 250
+    jump: 280
   },
   defaultLevelDuration: 3 * 60 * 1000,
   lanternLightDuration: 30 * 1000,

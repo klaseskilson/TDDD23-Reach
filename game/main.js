@@ -4,7 +4,7 @@ function Reach() {}
 
 Reach.prototype = {
   start: function () {
-    var windowAspectRatio = window.innerHeight / window.innerWidth;
+    var windowAspectRatio = 1.0;
     var gameHeight = Math.round(ReachConfig.gameWidth * windowAspectRatio);
     var game = new Phaser.Game(ReachConfig.gameWidth, gameHeight, Phaser.AUTO, '');
 
