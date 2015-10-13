@@ -6,6 +6,12 @@ IntroState.prototype = _.defaults({
   create: function () {
     var self = this;
 
+    // add background image
+    var backgroundImage = self.game.add.image(0, 0, 'background');
+    backgroundImage.fixedToCamera = true;
+    var scaleFactor = ReachConfig.gameWidth / backgroundImage.texture.frame.width;
+    backgroundImage.scale.setTo(scaleFactor, scaleFactor);
+
     // prepare tilemap
     self.map = self.game.add.tilemap('intro');
     self.map.addTilesetImage('reach_sprites', 'reachSprites');
