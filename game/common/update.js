@@ -110,12 +110,14 @@ var ReachStateUpdate = {
     if (self.lanternTimer.paused === false) {
       console.log('pausing player light');
       self.lanternTimer.pause();
+      self.player.loadTexture('boy');
       // the game might be over if the player chooses to turn of the light,
       // therefore we call self.gameOver to test this
       self.gameOver();
     } else {
       console.log('resuming player light');
       self.lanternTimer.resume();
+      self.player.loadTexture('lanternBoy');
     }
   }
 };
