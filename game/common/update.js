@@ -91,31 +91,10 @@ var ReachStateUpdate = {
     self.shadowTexture.context.fill();
   },
 
-  /**
-   * function to call when game is over
-   */
-  gameOver: function () {
-    var self = this;
-
-    var mapTimeOut = self.levelTimer && !(self.levelTimer.duration > 0);
-    var lanternTimeOut = self.lanternTimer && !(!self.lanternTimer.paused && self.lanternTimer.duration > 0);
-    if (mapTimeOut && lanternTimeOut) {
-      window.alert("Game over!");
-      console.log('Game over called from state', self.state.current);
-      self.game.state.start(self.state.current);
-    }
-  },
 
   updatePlayerProgress: function () {
     var self = this;
     self.game.physics.arcade.overlap(self.player, self.doors, self.mapFinished, null, self);
-  },
-
-  mapFinished: function (player, door) {
-    var self = this;
-    //alert('Map finished!');
-    // TODO: handle each doors differently
-    console.log('Map finished! Called from state', self.state.current, player, door);
   },
 
   togglePlayerLight: function () {

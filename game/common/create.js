@@ -2,6 +2,23 @@
 
 var ReachStateCreate = {
   /**
+   * prepare the map
+   * @param levelKey cache key to tilemap
+   */
+  setupMap: function (levelKey) {
+    var self = this;
+    // prepare tilemap
+    self.map = self.game.add.tilemap(levelKey);
+    self.map.addTilesetImage('reach_sprites', 'reachSprites');
+    // extract objects from tilemap
+    self.foregroundLayer = self.map.createLayer('foreground');
+    self.blockedLayer = self.map.createLayer('blocked');
+    // collisions between player an blockedLayer
+    self.map.setCollisionBetween(1, 2000, true, self.blockedLayer);
+    self.foregroundLayer.resizeWorld();
+  },
+
+  /**
    * initiate keyboard subscriptions
    * @param keys object containing the pre-defined keys you want to activate:
    * `cursors` - player movement

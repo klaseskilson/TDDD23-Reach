@@ -12,18 +12,7 @@ IntroState.prototype = _.defaults({
     var scaleFactor = ReachConfig.gameWidth / backgroundImage.texture.frame.width;
     backgroundImage.scale.setTo(scaleFactor, scaleFactor);
 
-    // prepare tilemap
-    self.map = self.game.add.tilemap('intro');
-    self.map.addTilesetImage('reach_sprites', 'reachSprites');
-
-    // extract objects from tilemap
-    self.backgroundLayer = self.map.createLayer('background');
-    self.blockedLayer = self.map.createLayer('blocked');
-
-    // collisions between player an blockedLayer
-    self.map.setCollisionBetween(1, 2000, true, self.blockedLayer);
-
-    self.backgroundLayer.resizeWorld();
+    self.setupMap('intro');
 
     // config lantern light duration
     self.lanternLightDuration = ReachConfig.lanternLightDuration;
@@ -33,12 +22,12 @@ IntroState.prototype = _.defaults({
     var playerSearch = ReachUtilities.findObjectsByType('playerStart', self.map, 'objectLayer');
     self.createPlayer(playerSearch[0]);
 
+    // setup level exit
     var doorSearch = ReachUtilities.findObjectsByType('mapExit', self.map, 'objectLayer');
     self.createLevelExit(doorSearch[0]);
 
     // prepare light
     self.createDarkness();
-
     var lightSearch = ReachUtilities.findObjectsByType('smallLight', self.map, 'objectLayer');
     self.createExtraLights(lightSearch, ReachConfig.smallLightRadius);
   },
@@ -48,4 +37,4 @@ IntroState.prototype = _.defaults({
     this.updatePlayerProgress();
     this.updateLevelLight();
   }
-}, ReachStateCreate, ReachStateUpdate);
+}, ReachStateCreate, ReachStateUpdate, ReachStateChange);
