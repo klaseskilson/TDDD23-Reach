@@ -22,6 +22,8 @@ IntroState.prototype = _.defaults({
     var playerSearch = ReachUtilities.findObjectsByType('playerStart', self.map, 'objectLayer');
     self.createPlayer(playerSearch[0]);
 
+    self.foregroundLayer = self.map.createLayer('foreground');
+
     // setup level exit
     var doorSearch = ReachUtilities.findObjectsByType('mapExit', self.map, 'objectLayer');
     self.createLevelExit(doorSearch[0]);

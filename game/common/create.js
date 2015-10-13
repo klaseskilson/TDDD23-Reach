@@ -11,11 +11,11 @@ var ReachStateCreate = {
     self.map = self.game.add.tilemap(levelKey);
     self.map.addTilesetImage('reach_sprites', 'reachSprites');
     // extract objects from tilemap
-    self.foregroundLayer = self.map.createLayer('foreground');
+    self.backgroundLayer = self.map.createLayer('background');
     self.blockedLayer = self.map.createLayer('blocked');
     // collisions between player an blockedLayer
     self.map.setCollisionBetween(1, 2000, true, self.blockedLayer);
-    self.foregroundLayer.resizeWorld();
+    self.backgroundLayer.resizeWorld();
   },
 
   /**
