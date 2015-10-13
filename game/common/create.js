@@ -43,8 +43,9 @@ var ReachStateCreate = {
     self.player.body.collideWorldBounds = true;
 
     // add self.player animations
-    self.player.animations.add('left', [0, 1, 2, 3], 10, true);
-    self.player.animations.add('right', [5, 6, 7, 8], 10, true);
+    var playerFrameRate = 8;
+    self.player.animations.add('left', [0, 1, 2, 3], playerFrameRate, true);
+    self.player.animations.add('right', [5, 6, 7, 8], playerFrameRate, true);
 
     // follow player with camera
     self.game.camera.follow(self.player);
