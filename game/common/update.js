@@ -41,6 +41,7 @@ var ReachStateUpdate = {
       self.shadowTexture.context.fillRect(0, 0, self.shadowTexture.width, self.shadowTexture.height);
 
       self.drawLantern();
+      self.drawExtraLights();
 
       // ensure overlay gets redrawn
       self.shadowTexture.dirty = true;
@@ -54,26 +55,40 @@ var ReachStateUpdate = {
       // calculate the life of the lantern, the closer towards 0 the less life is there left
       var lanternProgress = 1 - self.lanternTimer.duration / self.lanternLightDuration;
       // calculate flickering (increasing as lantern drains)
-      var maximumFlicker = 15;
-      var radiusFlicker = self.game.rnd.integerInRange(0, parseInt(maximumFlicker * lanternProgress));
+      var maximumRadiusFlicker = 15;
+      var radiusFlicker = self.game.rnd.integerInRange(0, parseInt(maximumRadiusFlicker * lanternProgress));
       var colorFlicker = lanternProgress * Math.random();
       var radius = ReachConfig.lanternRadius + radiusFlicker;
-      var playerPos = {
-        x: self.player.body.x,
-        y: self.player.body.y
-      };
-      var gradient = self.shadowTexture.context.createRadialGradient(
-        playerPos.x, playerPos.y, ReachConfig.lanternRadius * .25,
-        playerPos.x, playerPos.y, radius
-      );
-      gradient.addColorStop(0, 'rgba(255, 255, 255, ' + (1.0 - colorFlicker) + ')');
-      gradient.addColorStop(1, 'rgba(255, 255, 255, 0.0)');
-
-      self.shadowTexture.context.beginPath();
-      self.shadowTexture.context.fillStyle = gradient;
-      self.shadowTexture.context.arc(playerPos.x, playerPos.y, radius, 0, Math.PI*2);
-      self.shadowTexture.context.fill();
+      self.createLightRadius(self.player.body, ReachConfig.lanternRadius * .25, radius, (1.0 - colorFlicker));
     }
+  },
+
+  drawExtraLights: function () {
+    var self = this;
+
+    if (!self.extraLights) return;
+
+    self.extraLights.forEach(function (light) {
+      self.createLightRadius(light, light.radius * .25, light.radius, 1.0);
+    });
+  },
+
+  createLightRadius: function (position, innerRadius, outerRadius, intensity) {
+    var self = this;
+
+    if (!self.shadowTexture) return;
+
+    var gradient = self.shadowTexture.context.createRadialGradient(
+      position.x, position.y, innerRadius,
+      position.x, position.y, outerRadius
+    );
+    gradient.addColorStop(0, 'rgba(255, 255, 255, ' + intensity + ')');
+    gradient.addColorStop(1, 'rgba(255, 255, 255, 0.0)');
+
+    self.shadowTexture.context.beginPath();
+    self.shadowTexture.context.fillStyle = gradient;
+    self.shadowTexture.context.arc(position.x, position.y, outerRadius, 0, Math.PI*2);
+    self.shadowTexture.context.fill();
   },
 
   /**

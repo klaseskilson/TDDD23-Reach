@@ -68,6 +68,20 @@ var ReachStateCreate = {
     self.shadowTextureSprite.blendMode = Phaser.blendModes.MULTIPLY;
   },
 
+  createExtraLights: function (lights, radius) {
+    var self = this;
+
+    self.extraLights = self.extraLights || [];
+
+    lights.forEach(function (light) {
+      self.extraLights.push({
+        x: light.x,
+        y: light.y,
+        radius: radius
+      });
+    });
+  },
+
   /**
    * setup where the current level is finished
    *

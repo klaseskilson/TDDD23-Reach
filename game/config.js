@@ -10,5 +10,6 @@ var ReachConfig = {
   },
   defaultLevelDuration: 3 * 60 * 1000,
   lanternLightDuration: 30 * 1000,
-  lanternRadius: 80
+  lanternRadius: 80,
+  smallLightRadius: 20
 };

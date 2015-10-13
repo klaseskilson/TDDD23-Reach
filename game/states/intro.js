@@ -38,6 +38,9 @@ IntroState.prototype = _.defaults({
 
     // prepare light
     self.createDarkness();
+
+    var lightSearch = ReachUtilities.findObjectsByType('smallLight', self.map, 'objectLayer');
+    self.createExtraLights(lightSearch, ReachConfig.smallLightRadius);
   },
 
   update: function () {
