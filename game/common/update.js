@@ -59,7 +59,11 @@ var ReachStateUpdate = {
       var radiusFlicker = self.game.rnd.integerInRange(0, parseInt(maximumRadiusFlicker * lanternProgress));
       var colorFlicker = lanternProgress * Math.random();
       var radius = ReachConfig.lanternRadius + radiusFlicker;
-      self.createLightRadius(self.player.body, ReachConfig.lanternRadius * .25, radius, (1.0 - colorFlicker));
+      var lightPos = {
+        x: self.player.body.x + (self.player.body.width/2),
+        y: self.player.body.y + (self.player.body.height/2)
+      };
+      self.createLightRadius(lightPos, ReachConfig.lanternRadius * .25, radius, (1.0 - colorFlicker));
     }
   },
 
