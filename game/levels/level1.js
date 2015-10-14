@@ -33,6 +33,9 @@ Level1State.prototype = _.defaults({
     self.createDarkness(20 * 60 * 1000);
     var lightSearch = ReachUtilities.findObjectsByType('smallLight', self.map, 'objectLayer');
     self.createExtraLights(lightSearch, ReachConfig.smallLightRadius);
+
+    var messageSearch = ReachUtilities.findObjectsByType('keyboardTrigger', self.map, 'objectLayer');
+    self.createKeyboardTriggers(messageSearch, Phaser.Keyboard.E);
   },
 
   update: function () {

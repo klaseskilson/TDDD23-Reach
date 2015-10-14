@@ -22,6 +22,7 @@ var ReachStateChange = {
   mapFinished: function (player, door) {
     if (door.nextState) {
       ProgressControl.unlockLevel(door.nextState);
+      this.game.state.start(door.nextState);
       console.log('go to next map:', door.nextState);
     } else {
       console.log('go to menu');

@@ -117,5 +117,26 @@ var ReachStateUpdate = {
       self.lanternTimer.resume();
       self.player.loadTexture('lanternBoy');
     }
+  },
+
+  handleKeyToggle: function () {
+    var self = this.context;
+    var key = this.key;
+
+    if (self.triggerKeyAreas && self.triggerKeyAreas[key]) {
+      _.forEach(self.triggerKeyAreas[key], function (area) {
+        var yDist = Math.abs(self.player.y - area.y);
+        var xDist = Math.abs(self.player.x - area.x);
+        if (yDist < area.radius && xDist < area.radius) {
+          //window.alert(area.message);
+          var directions = area.message;
+          var style = { font: "12px Arial", backgroundColor: "#111111", fill: "#ffffff", align: "center" };
+          self.subTitle = self.game.add.text(0, 0, area.message, style);
+          self.subTitle.fixedToCamera = true;
+          self.subTitle.wordWrap = true;
+          self.subTitle.wordWrapWidth = self.game.scale.scaleFactor.x * window.innerWidth;
+        }
+      });
+    }
   }
 };

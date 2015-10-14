@@ -115,5 +115,28 @@ var ReachStateCreate = {
     self.doors.enableBody = true;
 
     ReachUtilities.createFromTiledObject(goalObject, self.doors);
-  }
+  },
+
+  createKeyboardTriggers: function (triggers, key) {
+    var self = this;
+    self.triggerKey = self.triggerKey || {};
+    self.triggerKey[key] = self.game.input.keyboard.addKey(key);
+    self.triggerKey[key].onDown.add(self.handleKeyToggle, {
+      key: key,
+      context: self
+    });
+
+    self.triggerKeyAreas = self.triggerKeyAreas || {};
+    self.triggerKeyAreas[key] = self.triggerKeyAreas[key] || [];
+
+    _.forEach(triggers, function (trigger) {
+      self.triggerKeyAreas[key].push({
+        x: trigger.x,
+        y: trigger.y,
+        key: key,
+        message: trigger.properties.message,
+        radius: parseInt(trigger.properties.radius)
+      });
+    });
+  },
 };
