@@ -11,6 +11,7 @@ var ReachStateCreate = {
     self.map = self.game.add.tilemap(levelKey);
     self.map.addTilesetImage('reach_sprites', 'reachSprites');
     // extract objects from tilemap
+    self.backgroundLayer = self.map.createLayer('distant');
     self.backgroundLayer = self.map.createLayer('background');
     self.blockedLayer = self.map.createLayer('blocked');
     // collisions between player an blockedLayer
@@ -91,10 +92,11 @@ var ReachStateCreate = {
     self.extraLights = self.extraLights || [];
 
     lights.forEach(function (light) {
+      var r = light.properties.radius || radius;
       self.extraLights.push({
         x: light.x,
         y: light.y,
-        radius: radius
+        radius: r
       });
     });
   },
