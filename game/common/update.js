@@ -31,9 +31,9 @@ var ReachStateUpdate = {
   updateLevelLight: function () {
     var self = this;
     if (self.levelTimer && self.levelTimer.running && self.shadowTexture) {
-      //console.log(self.levelTimer.duration)
+      var fullLight = self.fullLightIntensity || 1.0;
       var progress = self.levelTimer.duration / self.levelLightDuration;
-      progress = parseInt(255 * progress);
+      progress = parseInt(255 * progress * fullLight);
 
       // update darkness
       //console.log('Time progress:', progress);
@@ -70,10 +70,10 @@ var ReachStateUpdate = {
   drawExtraLights: function () {
     var self = this;
 
-    if (!self.extraLights) return;
+    if (!self.extraLights || self.extraLights.length === 0) return;
 
     self.extraLights.forEach(function (light) {
-      self.createLightRadius(light, light.radius * .25, light.radius, 1.0);
+      self.createLightRadius(light, light.radius * .25, light.radius, light.intensity);
     });
   },
 
