@@ -8,7 +8,10 @@ var ReachStateChange = {
     var self = this;
 
     var mapTimeOut = self.levelTimer && !(self.levelTimer.duration > 0);
-    var lanternTimeOut = self.lanternTimer && !(!self.lanternTimer.paused && self.lanternTimer.duration > 0);
+    var lanternTimeOut = true;
+    if (self.lanternTimer) {
+      lanternTimeOut = !(!self.lanternTimer.paused && self.lanternTimer.duration > 0);
+    }
     if (mapTimeOut && lanternTimeOut) {
       window.alert("Game over!");
       console.log('Game over called from state', self.state.current);
@@ -18,6 +21,7 @@ var ReachStateChange = {
 
   mapFinished: function (player, door) {
     if (door.nextState) {
+      ProgressControl.unlockLevel(door.nextState);
       console.log('go to next map:', door.nextState);
     } else {
       console.log('go to menu');
