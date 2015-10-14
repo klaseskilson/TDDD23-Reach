@@ -1,8 +1,8 @@
 'use strict';
 
-function IntroState() {}
+function Level1State() {}
 
-IntroState.prototype = _.defaults({
+Level1State.prototype = _.defaults({
   create: function () {
     var self = this;
 
@@ -12,8 +12,8 @@ IntroState.prototype = _.defaults({
     var scaleFactor = ReachConfig.gameWidth / backgroundImage.texture.frame.width;
     backgroundImage.scale.setTo(scaleFactor, scaleFactor);
 
-    self.setupMap('intro');
-
+    self.setupMap('level1');
+    self.fullLightIntensity = .8;
     // config lantern light duration
     self.lanternLightDuration = ReachConfig.lanternLightDuration;
     //self.setupInput({cursors: true, spacebar: true});
@@ -29,8 +29,8 @@ IntroState.prototype = _.defaults({
     var doorSearch = ReachUtilities.findObjectsByType('mapExit', self.map, 'objectLayer');
     self.createLevelExit(doorSearch[0]);
 
-    // prepare light
-    self.createDarkness(100 * 60 * 1000);
+    // prepare light - give the player long time
+    self.createDarkness(20 * 60 * 1000);
     var lightSearch = ReachUtilities.findObjectsByType('smallLight', self.map, 'objectLayer');
     self.createExtraLights(lightSearch, ReachConfig.smallLightRadius);
   },

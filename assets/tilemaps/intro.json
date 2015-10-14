@@ -83,10 +83,10 @@
                  "y":27.1027
                 }, 
                 {
-                 "gid":8,
+                 "gid":9,
                  "height":8,
-                 "id":6,
-                 "name":"elevator button",
+                 "id":11,
+                 "name":"elevator button light",
                  "properties":
                     {
                      "type":"smallLight"
@@ -95,8 +95,8 @@
                  "type":"",
                  "visible":true,
                  "width":8,
-                 "x":268.683,
-                 "y":35.8625
+                 "x":268.667,
+                 "y":36.3333
                 }],
          "opacity":0.509999990463257,
          "type":"objectgroup",
@@ -105,7 +105,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":11,
+ "nextobjectid":13,
  "orientation":"orthogonal",
  "properties":
     {
