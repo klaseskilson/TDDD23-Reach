@@ -30,7 +30,7 @@ Level1State.prototype = _.defaults({
     self.createLevelExit(doorSearch[0]);
 
     // prepare light - give the player long time
-    self.createDarkness(20 * 60 * 1000);
+    self.createDarkness(60 * 60 * 1000);
     var lightSearch = ReachUtilities.findObjectsByType('smallLight', self.map, 'objectLayer');
     self.createExtraLights(lightSearch, ReachConfig.smallLightRadius);
 

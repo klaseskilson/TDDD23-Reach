@@ -137,20 +137,16 @@ var ReachStateUpdate = {
   displaySubTitle: function (text, timeout) {
     timeout = timeout || 7*1000;
     var self = this;
-    var style = {
-      font: "Arial",
-      fontSize: 12,
-      //backgroundColor: "#111111",
-      fill: "#ffffff",
-      align: "center",
-      boundsAlignH: 'center',
-      boundsAlignV: 'bottom'
-    };
-    self.subTitle = self.game.add.text(0, 0, text, style);
-    self.subTitle.setTextBounds(0, 0, ReachConfig.gameWidth, ReachConfig.gameHeight);
+    if (self.subTitle)
+      self.subTitle.destroy();
+
+    text = text.replace('\\n', '\n');
+
+    self.subTitle = self.game.add.bitmapText(self.game.width / 2, self.game.height, 'carrier_command', text, 6);
     self.subTitle.fixedToCamera = true;
-    self.subTitle.wordWrap = true;
-    self.subTitle.wordWrapWidth = self.game.width;
+    self.subTitle.anchor.x = 0.5;
+    self.subTitle.anchor.y = 1;
+    self.subTitle.align = 'center';
 
     window.setTimeout(function () {
       self.subTitle.destroy();
