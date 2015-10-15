@@ -128,15 +128,40 @@ var ReachStateUpdate = {
         var yDist = Math.abs(self.player.y - area.y);
         var xDist = Math.abs(self.player.x - area.x);
         if (yDist < area.radius && xDist < area.radius) {
-          //window.alert(area.message);
-          var directions = area.message;
-          var style = { font: "12px Arial", backgroundColor: "#111111", fill: "#ffffff", align: "center" };
-          self.subTitle = self.game.add.text(0, 0, area.message, style);
-          self.subTitle.fixedToCamera = true;
-          self.subTitle.wordWrap = true;
-          self.subTitle.wordWrapWidth = self.game.scale.scaleFactor.x * window.innerWidth;
+          self.displaySubTitle(area.message);
         }
       });
     }
+  },
+
+  displaySubTitle: function (text, timeout) {
+    timeout = timeout || 7*1000;
+    var self = this;
+    var style = {
+      font: "Arial",
+      fontSize: 12,
+      //backgroundColor: "#111111",
+      fill: "#ffffff",
+      align: "center",
+      boundsAlignH: 'center',
+      boundsAlignV: 'bottom'
+    };
+    self.subTitle = self.game.add.text(0, 0, text, style);
+    self.subTitle.setTextBounds(0, 0, ReachConfig.gameWidth, ReachConfig.gameHeight);
+    self.subTitle.fixedToCamera = true;
+    self.subTitle.wordWrap = true;
+    self.subTitle.wordWrapWidth = self.game.width;
+
+    window.setTimeout(function () {
+      self.subTitle.destroy();
+    }, timeout);
+  },
+
+  render: function () {
+    var pixelCanvas = document.getElementById("pixel");
+    var pixelcontext = pixelCanvas.getContext("2d");
+    var pixelwidth = pixelCanvas.width;
+    var pixelheight = pixelCanvas.height;
+    pixelcontext.drawImage(this.game.canvas, 0, 0, ReachConfig.gameWidth, ReachConfig.gameHeight, 0, 0, pixelwidth, pixelheight);
   }
 };

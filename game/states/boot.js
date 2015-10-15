@@ -5,7 +5,7 @@ function BootState() {};
 BootState.prototype = {
   create: function() {
     var self = this;
-    self.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+    self.game.stage.smoothed = false;
 
     //have the game centered horizontally
     self.scale.pageAlignHorizontally = true;
@@ -19,5 +19,11 @@ BootState.prototype = {
     self.game.physics.startSystem(Phaser.Physics.ARCADE);
 
     self.game.state.start('preload');
+
+    var gameSize = Math.min(window.innerHeight, window.innerWidth);
+    var pixelElem = document.getElementById("pixel");
+    pixelElem.height = pixelElem.width = gameSize;
+    var pixelContext = pixelElem.getContext("2d");
+    Phaser.Canvas.setSmoothingEnabled(pixelContext, false);
   }
 };

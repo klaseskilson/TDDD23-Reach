@@ -2,6 +2,7 @@
 
 var ReachConfig = {
   gameWidth: 200,
+  gameHeight: 200,
   worldGravity: 300,
   debug: true,
   player: {

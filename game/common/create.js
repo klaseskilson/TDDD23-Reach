@@ -138,5 +138,5 @@ var ReachStateCreate = {
         radius: parseInt(trigger.properties.radius)
       });
     });
-  },
+  }
 };

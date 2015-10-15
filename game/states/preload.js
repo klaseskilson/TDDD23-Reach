@@ -11,6 +11,8 @@ PreloadState.prototype = {
     self.game.load.image('background', 'assets/images/dawn.png');
     self.game.load.spritesheet('boy', 'assets/images/boy.png', 18, 29);
     self.game.load.spritesheet('lanternBoy', 'assets/images/boy_lantern.png', 18, 29);
+
+    Phaser.Canvas.setSmoothingEnabled(self.game.canvas, false);
   },
 
   create: function () {

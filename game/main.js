@@ -4,10 +4,7 @@ function Reach() {}
 
 Reach.prototype = {
   start: function () {
-    var windowAspectRatio = 1.0;
-    var gameHeight = Math.round(ReachConfig.gameWidth * windowAspectRatio);
-    var game = new Phaser.Game(ReachConfig.gameWidth, gameHeight, Phaser.AUTO, '', null, false, true);
-    game.config.resolution = window.devicePixelRatio;
+    var game = new Phaser.Game(ReachConfig.gameWidth, ReachConfig.gameHeight, Phaser.AUTO, 'phaser', null, false, false);
 
     game.state.add('boot', BootState);
     game.state.add('preload', PreloadState);
