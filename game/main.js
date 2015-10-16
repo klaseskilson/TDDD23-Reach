@@ -8,6 +8,7 @@ Reach.prototype = {
 
     game.state.add('boot', BootState);
     game.state.add('preload', PreloadState);
+    game.state.add('menu', MenuState);
     game.state.add('intro', IntroState);
     game.state.add('level1', Level1State);
 

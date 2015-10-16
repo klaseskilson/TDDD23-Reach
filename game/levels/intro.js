@@ -40,4 +40,4 @@ IntroState.prototype = _.defaults({
     this.updatePlayerProgress();
     this.updateLevelLight();
   }
-}, ReachStateCreate, ReachStateUpdate, ReachStateChange);
+}, ReachStateCreate, ReachStateUpdate, ReachStateChange, ReachRender);
