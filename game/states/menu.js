@@ -28,7 +28,9 @@ MenuState.prototype = _.defaults({
     self.cursors = self.game.input.keyboard.createCursorKeys();
 
     self.spacebar = self.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+    self.enter = self.game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
     self.spacebar.onDown.add(self.chooseLevel, self);
+    self.enter.onDown.add(self.chooseLevel, self);
   },
 
   update: function () {
