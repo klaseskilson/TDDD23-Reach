@@ -4,7 +4,7 @@ var ReachConfig = {
   gameWidth: 200,
   gameHeight: 200,
   worldGravity: 300,
-  debug: true,
+  debug: false,
   player: {
     velocity: 75,
     jump: 280
