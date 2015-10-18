@@ -105,7 +105,7 @@ var ReachStateUpdate = {
   },
 
   displayMessages: function (player, trigger) {
-    this.displaySubTitle(trigger.message, 4*1000);
+    this.displaySubTitle(trigger.message);
   },
 
   togglePlayerLight: function () {
@@ -149,7 +149,7 @@ var ReachStateUpdate = {
 
     text = text.replace('\\n', '\n');
 
-    self.subTitle = self.game.add.bitmapText(self.game.width / 2, self.game.height, 'carrier_command', text, 6);
+    self.subTitle = self.game.add.bitmapText(self.game.width / 2, self.game.height - 2, 'carrier_command', text, 6);
     self.subTitle.fixedToCamera = true;
     self.subTitle.anchor.x = 0.5;
     self.subTitle.anchor.y = 1;
