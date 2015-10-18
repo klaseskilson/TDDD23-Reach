@@ -95,10 +95,17 @@ var ReachStateUpdate = {
     self.shadowTexture.context.fill();
   },
 
-
   updatePlayerProgress: function () {
-    var self = this;
-    self.game.physics.arcade.overlap(self.player, self.doors, self.mapFinished, null, self);
+    this.game.physics.arcade.overlap(this.player, this.doors, this.mapFinished, null, this);
+  },
+
+  detectPlayerMessages: function () {
+    if (!this.areaTriggers) return;
+    this.game.physics.arcade.overlap(this.player, this.areaTriggers, this.displayMessages, null, this);
+  },
+
+  displayMessages: function (player, trigger) {
+    this.displaySubTitle(trigger.message, 4*1000);
   },
 
   togglePlayerLight: function () {

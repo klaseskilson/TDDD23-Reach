@@ -138,5 +138,14 @@ var ReachStateCreate = {
         radius: parseInt(trigger.properties.radius)
       });
     });
+  },
+
+  createAreaTriggers: function (triggers) {
+    var self = this;
+    self.areaTriggers = self.game.add.group();
+    self.areaTriggers.enableBody = true;
+    _.forEach(triggers, function (trigger) {
+      ReachUtilities.createFromTiledObject(trigger, self.areaTriggers);
+    });
   }
 };
