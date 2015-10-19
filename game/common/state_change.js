@@ -20,9 +20,14 @@ var ReachStateChange = {
   },
 
   mapFinished: function (player, door) {
+    var self = this;
     if (door.nextState) {
       ProgressControl.unlockLevel(door.nextState);
     }
-    this.game.state.start('menu');
+    var timeout = 4000;
+    self.displaySubTitle('Phew! We made it!', timeout);
+    window.setTimeout(function () {
+      self.game.state.start('menu');
+    }, timeout);
   }
 };

@@ -26,8 +26,8 @@ Level2State.prototype = _.defaults({
     self.foregroundLayer = self.map.createLayer('foreground');
 
     // setup level exit
-    //var doorSearch = ReachUtilities.findObjectsByType('mapExit', self.map, 'objectLayer');
-    //self.createLevelExit(doorSearch[0]);
+    var doorSearch = ReachUtilities.findObjectsByType('mapExit', self.map, 'objectLayer');
+    self.createLevelExit(doorSearch[0]);
 
     // prepare light & compensate for full intensity
     self.createDarkness(2 * 60 * 1000 / self.fullLightIntensity);
