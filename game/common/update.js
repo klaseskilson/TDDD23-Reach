@@ -131,11 +131,20 @@ var ReachStateUpdate = {
     var key = this.key;
 
     if (self.triggerKeyAreas && self.triggerKeyAreas[key]) {
-      _.forEach(self.triggerKeyAreas[key], function (area) {
+      _.forEach(self.triggerKeyAreas[key], function (area, index) {
         var yDist = Math.abs(self.player.y - area.y);
         var xDist = Math.abs(self.player.x - area.x);
         if (yDist < area.radius && xDist < area.radius) {
-          self.displaySubTitle(area.message);
+          if (area.message) {
+            self.displaySubTitle(area.message);
+          }
+
+          if (area.method) {
+            self[area.method].call(self);
+          }
+
+          // remove this trigger
+          self.triggerKeyAreas[key].splice(index, 1);
         }
       });
     }
@@ -147,7 +156,7 @@ var ReachStateUpdate = {
     if (self.subTitle)
       self.subTitle.destroy();
 
-    text = text.replace('\\n', '\n');
+    text = text.replace(/\\n/g, '\n');
 
     self.subTitle = self.game.add.bitmapText(self.game.width / 2, self.game.height - 2, 'carrier_command', text, 6);
     self.subTitle.fixedToCamera = true;
