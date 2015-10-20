@@ -33,6 +33,7 @@ var ReachStateCreate = {
     }
 
     if (keys.spacebar) {
+      // TODO: fix this weird design
       self.setupLantern();
     }
   },
@@ -135,8 +136,18 @@ var ReachStateCreate = {
         y: trigger.y,
         key: key,
         message: trigger.properties.message,
-        radius: parseInt(trigger.properties.radius)
+        radius: parseInt(trigger.properties.radius),
+        method: trigger.properties.method
       });
+    });
+  },
+
+  createAreaTriggers: function (triggers) {
+    var self = this;
+    self.areaTriggers = self.game.add.group();
+    self.areaTriggers.enableBody = true;
+    _.forEach(triggers, function (trigger) {
+      ReachUtilities.createFromTiledObject(trigger, self.areaTriggers);
     });
   }
 };

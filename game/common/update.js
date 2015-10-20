@@ -95,10 +95,17 @@ var ReachStateUpdate = {
     self.shadowTexture.context.fill();
   },
 
-
   updatePlayerProgress: function () {
-    var self = this;
-    self.game.physics.arcade.overlap(self.player, self.doors, self.mapFinished, null, self);
+    this.game.physics.arcade.overlap(this.player, this.doors, this.mapFinished, null, this);
+  },
+
+  detectPlayerMessages: function () {
+    if (!this.areaTriggers) return;
+    this.game.physics.arcade.overlap(this.player, this.areaTriggers, this.displayMessages, null, this);
+  },
+
+  displayMessages: function (player, trigger) {
+    this.displaySubTitle(trigger.message);
   },
 
   togglePlayerLight: function () {
@@ -124,11 +131,20 @@ var ReachStateUpdate = {
     var key = this.key;
 
     if (self.triggerKeyAreas && self.triggerKeyAreas[key]) {
-      _.forEach(self.triggerKeyAreas[key], function (area) {
+      _.forEach(self.triggerKeyAreas[key], function (area, index) {
         var yDist = Math.abs(self.player.y - area.y);
         var xDist = Math.abs(self.player.x - area.x);
         if (yDist < area.radius && xDist < area.radius) {
-          self.displaySubTitle(area.message);
+          if (area.message) {
+            self.displaySubTitle(area.message);
+          }
+
+          if (area.method) {
+            self[area.method].call(self);
+          }
+
+          // remove this trigger
+          self.triggerKeyAreas[key].splice(index, 1);
         }
       });
     }
@@ -140,9 +156,9 @@ var ReachStateUpdate = {
     if (self.subTitle)
       self.subTitle.destroy();
 
-    text = text.replace('\\n', '\n');
+    text = text.replace(/\\n/g, '\n');
 
-    self.subTitle = self.game.add.bitmapText(self.game.width / 2, self.game.height, 'carrier_command', text, 6);
+    self.subTitle = self.game.add.bitmapText(self.game.width / 2, self.game.height - 2, 'carrier_command', text, 6);
     self.subTitle.fixedToCamera = true;
     self.subTitle.anchor.x = 0.5;
     self.subTitle.anchor.y = 1;
