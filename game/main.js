@@ -12,6 +12,7 @@ Reach.prototype = {
     game.state.add('intro', IntroState);
     game.state.add('level1', Level1State);
     game.state.add('level2', Level2State);
+    game.state.add('level3', Level3State);
 
     game.state.start('boot');
   }
