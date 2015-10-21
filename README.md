@@ -6,7 +6,6 @@ at [LiU](https://liu.se).
 
 ## Setup
 
-To get started, make sure you have [Bower](https://bower.io) installed. Then, install 
-all dependencies using `bower install` in your terminal. Then fire up a http server, 
-such as the  excellent [http-server](https://github.com/indexzero/http-server) and 
-point it to the root of this repo.
+On this branch (`gh-pages`), all dependencies are allready cached. All you need to do is to fire up 
+a http server,  such as the  excellent [http-server](https://github.com/indexzero/http-server)
+and point it to the root of this repo.
