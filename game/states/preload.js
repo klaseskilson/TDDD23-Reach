@@ -2,7 +2,7 @@
 
 function PreloadState() {}
 
-PreloadState.prototype = {
+PreloadState.prototype = _.defaults({
   preload: function () {
     var self = this;
 
@@ -31,4 +31,4 @@ PreloadState.prototype = {
   create: function () {
     this.game.state.start('menu');
   }
-};
+}, ReachRender);
