@@ -15,7 +15,7 @@ MenuState.prototype = _.defaults({
 
     self.game.add.button(self.startPoint.x, self.startPoint.y, 'enabledButtons', undefined, self, 1, 1, 1, 1);
 
-    for (var i = 1; i < 6; ++i) {
+    for (var i = 1; i < 4; ++i) {
       var y = self.startPoint.y + (i % self.perColumn) * (self.buttonSize + self.buttonPadding.y);
       var x = self.startPoint.x + Math.floor(i / self.perColumn) * (self.buttonSize + self.buttonPadding.x) * 2;
       var spriteMap = ProgressControl.isUnlocked('level' + i) ? 'enabledButtons' : 'disabledButtons';
